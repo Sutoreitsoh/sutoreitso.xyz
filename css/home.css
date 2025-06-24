@@ -1,0 +1,235 @@
+body {
+    background-color: black;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    font-family: "Nunito Sans", sans-serif;
+    transition: opacity 3s ease-in-out;
+}
+
+body.transition-to-video {
+    opacity: 0;
+}
+
+#background-video {
+    opacity: 0;
+    transition: opacity 3s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+#background-video.show {
+    opacity: 1;
+}
+
+/* --- Style rétro VHS rouge pour le bouton "enter" --- */
+.button {
+    background: linear-gradient(90deg, #2d0000 0%, #7a0000 100%);
+    color: #ff3c3c;
+    border: 3px solid #ff3c3c;
+    border-radius: 0;
+    padding: 13px 28px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 22px;
+    font-family: 'Press Start 2P', 'Courier New', Courier, monospace;
+    letter-spacing: 2px;
+    box-shadow:
+        0 0 8px #ff3c3c,
+        0 0 2px #fff inset,
+        0 0 0 4px #1a0000 inset;
+    text-shadow:
+        2px 2px 0 #000,
+        0 0 2px #fff,
+        0 0 8px #ff3c3c;
+    transition: background 0.5s, color 0.5s, transform 0.1s, box-shadow 0.3s;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    animation: retro-glow-red 2.5s infinite alternate;
+    image-rendering: pixelated;
+    filter: contrast(1.2) brightness(1.1) saturate(1.2);
+}
+
+.button:hover {
+    background: linear-gradient(90deg, #ff3c3c 0%, #2d0000 100%);
+    color: #fff;
+    box-shadow:
+        0 0 16px #ff3c3c,
+        0 0 4px #fff inset,
+        0 0 0 4px #1a0000 inset;
+    text-shadow:
+        2px 2px 0 #000,
+        0 0 4px #fff,
+        0 0 12px #ff3c3c;
+}
+
+.button:active {
+    transform: translate(-50%, -50%) scale(0.95);
+}
+
+@keyframes retro-glow-red {
+    0% {
+        box-shadow: 0 0 8px #ff3c3c, 0 0 2px #fff inset;
+        filter: hue-rotate(0deg) brightness(1.1);
+    }
+    100% {
+        box-shadow: 0 0 18px #ff3c3c, 0 0 6px #fff inset;
+        filter: hue-rotate(-10deg) brightness(1.2);
+    }
+}
+
+.overlay {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.overlay:hover {
+    transform: translate(-50%, -50%) scale(1.1); 
+}
+
+.overlay p {
+    color: white;
+    font-size: 2em;
+    margin-bottom: 11px;
+}
+
+.mute-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 5;
+    cursor: pointer;
+    background-color: black;
+}
+
+.mute-button img {
+    max-width: 40px;
+    display: block;
+}
+
+.pfp {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 3px 5px rgb(182, 0, 0);
+    background: linear-gradient(45deg, #ff0000, #b20000);
+    background-size: 200% 200%;
+    animation: gradient-animation 3s ease infinite;
+}
+
+@keyframes gradient-animation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.small-images {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.superp, .superv, .svg-inline--fa.fa-discord.fa-w-14 {
+    width: 18px;
+    margin: 0 5px;
+    color: white;
+}
+
+* {
+    user-select: none;
+    cursor: url(https://cur.cursors-4u.net/others/oth-8/oth704.cur), auto !important;
+}
+
+.overlay p,
+.overlay a,
+.overlay span,
+.overlay strong,
+.overlay em,
+#background-video {
+    position: relative;
+    filter: contrast(1.15) brightness(1.08) saturate(1.12);
+    text-shadow:
+        0 0 1px #fff,
+        1px 0 2px rgb(216, 216, 216),
+        -1px 0 2px rgb(0, 0, 0),
+        0 1px 2px #fff;
+    animation: vhs-glitch-soft 2.2s infinite linear alternate;
+}
+.pfp {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 3px 5px rgb(182, 0, 0);
+    background: linear-gradient(45deg, #ff0000, #b20000);
+    background-size: 200% 200%;
+    animation: gradient-animation 3s ease infinite;
+    position: relative;
+    filter: contrast(1.15) brightness(1.08) saturate(1.12);
+    animation: vhs-glitch-soft 2.2s infinite linear alternate;
+}
+@keyframes vhs-glitch-soft {
+    0% {
+        filter: contrast(1.15) brightness(1.08) saturate(1.12) hue-rotate(0deg);
+        left: 0px;
+    }
+    10% {
+        filter: contrast(1.18) brightness(1.10) saturate(1.15) hue-rotate(-2deg);
+        left: -0.5px;
+    }
+    20% {
+        filter: contrast(1.13) brightness(1.07) saturate(1.10) hue-rotate(2deg);
+        left: 0.5px;
+    }
+    30% {
+        filter: contrast(1.17) brightness(1.09) saturate(1.13) hue-rotate(-1deg);
+        left: -0.7px;
+    }
+    40% {
+        filter: contrast(1.15) brightness(1.08) saturate(1.12) hue-rotate(1deg);
+        left: 0.7px;
+    }
+    100% {
+        filter: contrast(1.15) brightness(1.08) saturate(1.12) hue-rotate(0deg);
+        left: 0px;
+    }
+}
+
+/* Lignes VHS */
+body::before {
+    content: "";
+    pointer-events: none;
+    position: fixed;
+    left: 0; top: 0; width: 100vw; height: 100vh;
+    z-index: 9999;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.03) 0px,
+        rgba(255,255,255,0.03) 1px,
+        transparent 1px,
+        transparent 4px
+    );
+    animation: vhs-lines 0.3s infinite linear;
+}
+
+@keyframes vhs-lines {
+    0% { background-position-y: 0; }
+    100% { background-position-y: 4px; }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
